@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Services.Context;
 using Services.Repositories;
+using Services.Services;
 
 public class Program
 {
@@ -22,7 +23,9 @@ public class Program
 
         // Registrasi service/repository
         builder.Services.AddScoped<ITrashRepository, TrashRepository>();
+        builder.Services.AddScoped<IUserRepository, UserRepository>();
         builder.Services.AddScoped<TrashService>();
+        builder.Services.AddScoped<UserService>();
 
         // ✅ Add Authorization biar UseAuthorization() ga error
         builder.Services.AddAuthorization();
@@ -37,6 +40,8 @@ public class Program
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

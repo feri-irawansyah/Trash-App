@@ -9,6 +9,11 @@
         .then(data => {
             rows = data
         });
+
+        fetch("/api/auth/session", {
+        credentials: "include"
+        });
+
     })
 
 </script>
